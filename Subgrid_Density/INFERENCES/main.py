@@ -60,7 +60,8 @@ def production():
 
     #  Models
     # ++++++++
-    from models import Std_Stanley, GTF_LinReg_Stanley, GTF_FCNN_Stanley, GTF_CNN_Stanley
+    #from models import Std_Stanley, GTF_LinReg_Stanley, GTF_FCNN_Stanley, GTF_CNN_Stanley
+    from models import Std_Stanley
 
     # get masks
     mask_u = nemo_metrics.receive('mask_u')
