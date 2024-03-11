@@ -3,8 +3,14 @@
 
 ## Context and Motivation
 
-Purpose of this experiment is to compute the density variation with the [Stanley & al. (2022)](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2020MS002185) closure model in an external python script on a 10 years global eORCA025 config.
-The computed density is sent back to NEMO without retroaction on the solution. It is then written in a file with NEMO output system (XIOS).
+Purpose of this experiment is to compute the subgrid-density fluctuations with different implementations of the [Stanley & al. (2022)](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2020MS002185) closure model on a 10 years global eORCA025 config.
+The computed density is written in an output file with the NEMO ouput system (XIOS).
+
+#### Variations
+- **STD** : Standard analytical computation as described in paper without retroaction on the solution
+- **LinReg** : Term $\sigma^2_T$ is computed with a statistical Linear Regression `...WORK IN PROGRESS...` 
+- **FCNN** : Term $\sigma^2_T$ computed with a pre-trained FCNN `...WORK IN PROGRESS...`
+- **CNN** : Term $\sigma^2_T$ computed with a pre-trained CNN `...WORK IN PROGRESS...`
 
 ## Experiments Requirements
 
