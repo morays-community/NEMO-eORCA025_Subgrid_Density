@@ -43,7 +43,7 @@ def Std_Stanley(T, S, mask_u, mask_v, c=0.1):
         mask_v_hls = np.delete( mask_v, 0, axis=1 )
         mask_v_hls = np.hstack( (mask_v_hls, mask_v_hls[:,-1:,:]) )
 
-        dTdy = np.diff( np.vstack( (T_hls,T) ) , axis=1 ) * mask_v
+        dTdy = np.diff( np.hstack( (T_hls,T) ) , axis=1 ) * mask_v
         dTdy = dTdy + np.diff(T,axis=1, append=T[:,-1:,:]) * mask_v_hls
         wght = mask_v + mask_v_hls
         wght[(wght == 0)] = 1
