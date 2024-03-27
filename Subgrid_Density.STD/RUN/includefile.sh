@@ -22,7 +22,7 @@ set -x
 #########################################################################
 
  CONFIG=eORCA025.L75
- CASE=GB.INF
+ CASE=SG_Dens.STD
  CONFIG_CASE=${CONFIG}-${CASE}
 
 # Environmemt and miscelaneous
@@ -84,7 +84,7 @@ P_WEI_DIR=$P_DTA_DIR                                 # weight files
 P_CTL_DIR=${PDIR}/RUN_${CONFIG}/${CONFIG_CASE}/CTL      # directory from which the job is  launched
 P_CDF_DIR=${PDIR}/RUN_${CONFIG}/${CONFIG_CASE}/CTL/CDF  # directory from which the diags are launched
 P_EXE_DIR=${PDIR}/RUN_${CONFIG}/${CONFIG_CASE}/EXE      # directory where to find opa
-P_UTL_DIR=${WORK}/BLD/WeORCA025.L75-GB.INF/tools/REBUILD_MPP/BLD  # root directory of the build_nc programs (under bin )
+P_UTL_DIR=${WORK}/BLD/WeORCA025.L75-SG_Dens.STD/tools/REBUILD_MPP/BLD  # root directory of the build_nc programs (under bin )
 P_XIOS_DIR=${WORK}/local_libs/xios_trunk_oasis_5.0                # root directory of the XIOS library and xios_server.exe
 P_PY_DIR=${WORK}/local_libs/morays-community/NEMO-Subgrid_Density/Subgrid_Density/INFERENCES # root directory of the python libraries
 

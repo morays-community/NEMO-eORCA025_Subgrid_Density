@@ -12,13 +12,13 @@ def ocean_info():
     # coupling config
     tunnel_config = list()
     tunnel_config.append( { 'label' : 'TO_NEMO_FIELDS', \
-                            'grids' : { 'eORCA025' : Grids.eORCA025 }, \
+                            'grids' : { 'eORCA025' : (1440,1206,0,0) }, \
                             'exchs' : [ {'freq' : Freqs.DAILY, 'grd' : 'eORCA025', 'lvl' : 1, 'in' : ['sst','sss'], 'out' : ['rho']} ] }
                         )
                         
     # static coupling (manual send/receive)
     tunnel_config.append( { 'label' : 'TO_NEMO_METRICS', \
-                            'grids' : { 'eORCA025' : Grids.eORCA025 }, \
+                            'grids' : { 'eORCA025' : (1440,1206,0,0) }, \
                             'exchs' : [ {'freq' : Freqs.STATIC, 'grd' : 'eORCA025', 'lvl' : 1, 'in' : ['mask_u','mask_v'], 'out' : []} ] }
                         )
                         

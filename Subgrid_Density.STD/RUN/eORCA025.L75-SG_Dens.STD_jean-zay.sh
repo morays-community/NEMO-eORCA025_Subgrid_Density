@@ -21,7 +21,7 @@ ulimit -s
 ulimit -s unlimited
 
 CONFIG=eORCA025.L75
-CASE=GB.INF
+CASE=SG_Dens.STD
 
 CONFCASE=${CONFIG}-${CASE}
 CTL_DIR=$PDIR/RUN_${CONFIG}/${CONFCASE}/CTL
