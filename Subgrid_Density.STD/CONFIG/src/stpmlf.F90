@@ -455,7 +455,7 @@ CONTAINS
       ! Finalize contextes if end of simulation or error detected
       !<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       IF( kstp == nitend .OR. nstop > 0 ) THEN
-                      CALL iom_context_finalize(      cxios_context          ) ! needed for XIOS+AGRIF
+         !            CALL iom_context_finalize(      cxios_context          ) ! needed for XIOS+AGRIF
          IF( ln_crs ) CALL iom_context_finalize( trim(cxios_context)//"_crs" ) !
       ENDIF
 #endif

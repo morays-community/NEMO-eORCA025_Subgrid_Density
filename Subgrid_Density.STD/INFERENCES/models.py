@@ -39,7 +39,7 @@ def Std_Stanley(T, S, mask_u, mask_v, c=0.1):
 
         T_hls = T[:,1:2,:].copy()
         T_hls = np.flip( T_hls )
-        T_hls = np.roll( T_hls, 1, axis=1)
+        T_hls = np.roll( T_hls, 1, axis=0)
         mask_v_hls = np.delete( mask_v, 0, axis=1 )
         mask_v_hls = np.hstack( (mask_v_hls, mask_v_hls[:,-1:,:]) )
 
