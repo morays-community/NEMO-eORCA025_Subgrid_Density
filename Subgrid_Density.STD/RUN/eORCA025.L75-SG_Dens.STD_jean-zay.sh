@@ -13,7 +13,6 @@
 source $P_PYOASIS_DIR/python/init.sh
 source $P_PYOASIS_DIR/python/init.csh
 source ${HOME}/.bash_profile
-conda activate morays
 # ----------- 
 
 set -x
@@ -21,7 +20,7 @@ ulimit -s
 ulimit -s unlimited
 
 CONFIG=eORCA025.L75
-CASE=SG_Dens.STD
+CASE=GB.INF
 
 CONFCASE=${CONFIG}-${CASE}
 CTL_DIR=$PDIR/RUN_${CONFIG}/${CONFCASE}/CTL
