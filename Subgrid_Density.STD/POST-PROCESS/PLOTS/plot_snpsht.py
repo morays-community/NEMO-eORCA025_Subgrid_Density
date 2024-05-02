@@ -47,19 +47,19 @@ infos[ 'voextrho' ] = [ '-\u0394\u03c1 (kg/m³)' , cmocean.cm.ice_r , colors.Log
 # ============================================================
 #                       2D Fields to plot
 # ============================================================
-to_plot[ 'gridTsurf' ] = ['soextrho','sosstsst','sosaline','soextrho','sossheig'] # sst, sss, drho
+to_plot[ 'gridTsurf' ] = ['soextrho','sosstsst','sosaline','sossheig'] # sst, sss, drho
 to_plot[ 'gridUsurf' ] = ['vozocrtx']                       # u-current
 to_plot[ 'gridVsurf' ] = ['vomecrty']                       # v-current
 to_plot[ 'flxT' ] = ['sohefldo','sosfldow','sowaflup']      # heat, salt, water fluxes
 # ============================================================
 #                       3D Fields to plot
 # ============================================================
-to_plot[ 'gridT' ] = ['votemper','vosaline','voextrho']     # T, S, drho
-to_plot[ 'gridU' ] = ['vozocrtx']                           # u-current
-to_plot[ 'gridV' ] = ['vomecrty']                           # v-current
-to_plot[ 'gridW' ] = ['vovecrtz']                           # w-current
+#to_plot[ 'gridT' ] = ['votemper','vosaline','voextrho']     # T, S, drho
+#to_plot[ 'gridU' ] = ['vozocrtx']                           # u-current
+#to_plot[ 'gridV' ] = ['vomecrty']                           # v-current
+#to_plot[ 'gridW' ] = ['vovecrtz']                           # w-current
 to_plot[ 'EKE' ] = ['voeke','vomke','votke']                # eke, mke, tke
-to_plot[ 'VT' ]  = ['vomevt','vomevs','vozout','vozous']    # vt, vs, ut, us
+#to_plot[ 'VT' ]  = ['vomevt','vomevs','vozout','vozous']    # vt, vs, ut, us
 # ============================================================
 
 

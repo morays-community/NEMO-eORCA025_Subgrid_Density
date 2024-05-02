@@ -27,7 +27,7 @@ infos[ 'sosstsst' ] = [ 'SST (degC)', cmocean.cm.thermal , colors.Normalize(vmin
 infos[ 'sosaline' ] = [ 'Salinity (psu)' , cmocean.cm.haline , colors.Normalize(vmin=28, vmax=38), lambda x: x ]
 infos[ 'sossheig' ] = [ 'SSH (m)' , cmocean.cm.deep , colors.Normalize(vmin=-2, vmax=2), lambda x: x ]
 infos[ 'soextrho' ] = [ '-\u0394\u03c1 (kg/m³)' , cmocean.cm.ice_r , colors.LogNorm(vmin=0.000005, vmax=0.05), lambda x: abs(x) ]
-infos[ 'somxl010' ] = [ 'Mixed Layer Depth (m)' , cmocean.cm.amp , colors.LogNorm(vmin=1.0 , vmax=5000), lambda x: x ]
+infos[ 'somxl010' ] = [ 'Mixed Layer Depth (m)' , cmocean.cm.amp , colors.Normalize(vmin=0.0 , vmax=500), lambda x: x ]
 infos[ 'vozocrtx' ] = [ 'u (m/s)' , cmocean.cm.diff , colors.Normalize(vmin=-1.0, vmax=1.0), lambda x: x ]
 infos[ 'vomecrty' ] = [ 'v (m/s)' , cmocean.cm.diff , colors.Normalize(vmin=-0.5, vmax=0.5), lambda x: x ]
 infos[ 'vovecrtz' ] = [ 'w (m/s)' , cmocean.cm.diff , colors.Normalize(vmin=-0.0000005, vmax=0.0000005), lambda x: x]
@@ -52,19 +52,19 @@ infos[ 'sointwbj' ] = [ 'NEMO subgrid Vert. Buoyancy Flux V (m2/s)' , cmocean.cm
 # ============================================================
 #                           2D Fields
 # ============================================================
-to_plot[ 'gridTsurf' ] = ['somle_Lf','sosstsst','sosaline','sossheig','somxl010'] # sst, sss, drho
-to_plot[ 'gridUsurf' ] = ['vozocrtx','soextwbi','sointwbi']            # u-current
-to_plot[ 'gridVsurf' ] = ['vomecrty','soextwbj','sointwbj']            # v-current
+to_plot[ 'gridTsurf' ] = ['sosstsst','sosaline','sossheig','somxl010','soextrho'] # sst, sss, drho
+to_plot[ 'gridUsurf' ] = ['vozocrtx']            # u-current
+to_plot[ 'gridVsurf' ] = ['vomecrty']            # v-current
 to_plot[ 'flxT' ] = ['sohefldo','sosfldow','sowaflup']      # heat, salt, water fluxes
 # ============================================================
 #                           3D Fields
 # ============================================================
-to_plot[ 'gridT' ] = ['votemper','vosaline']     # T, S, drho
+#to_plot[ 'gridT' ] = ['votemper','vosaline']     # T, S, drho
 #to_plot[ 'gridU' ] = ['vozocrtx']                # u-current
 #to_plot[ 'gridV' ] = ['vomecrty']                # v-current
-to_plot[ 'gridW' ] = ['vovecrtz']                           # w-current
+#to_plot[ 'gridW' ] = ['vovecrtz']                           # w-current
 to_plot[ 'EKE' ] = ['voeke','vomke','votke']                # eke, mke, tke
-to_plot[ 'VT' ]  = ['vomevt','vomevs','vozout','vozous']    # vt, vs, ut, us
+#to_plot[ 'VT' ]  = ['vomevt','vomevs','vozout','vozous']    # vt, vs, ut, us
 # ============================================================
 
 
