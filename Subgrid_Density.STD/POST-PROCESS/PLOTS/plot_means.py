@@ -7,7 +7,7 @@ import re
 import argparse
 
 import numpy as np
-import xarray as xr
+import netCDF4 as nc
 import cmocean
 
 import cartopy.crs as ccrs
@@ -49,6 +49,7 @@ infos[ 'soextwbi' ] = [ 'INF subgrid Vert. Buoyancy Flux U (m2/s)' , cmocean.cm.
 infos[ 'soextwbj' ] = [ 'INF subgrid Vert. Buoyancy Flux V (m2/s)' , cmocean.cm.balance , colors.SymLogNorm(linthresh=0.1, vmin=-1., vmax=50.), lambda x: x ]
 infos[ 'sointwbi' ] = [ 'NEMO subgrid Vert. Buoyancy Flux U (m2/s)' , cmocean.cm.balance , colors.SymLogNorm(linthresh=0.1, vmin=-1., vmax=50.), lambda x: x ]
 infos[ 'sointwbj' ] = [ 'NEMO subgrid Vert. Buoyancy Flux V (m2/s)' , cmocean.cm.balance , colors.SymLogNorm(linthresh=0.1, vmin=-1., vmax=50.), lambda x: x ]
+infos[ 'voextrho' ] = [ '-\u0394\u03c1 (kg/m³)' , cmocean.cm.ice_r , colors.LogNorm(vmin=0.000005, vmax=0.05), lambda x: abs(x) ]
 # ============================================================
 #                           2D Fields
 # ============================================================
@@ -59,12 +60,12 @@ to_plot[ 'flxT' ] = ['sohefldo','sosfldow','sowaflup']      # heat, salt, water 
 # ============================================================
 #                           3D Fields
 # ============================================================
-#to_plot[ 'gridT' ] = ['votemper','vosaline']     # T, S, drho
-#to_plot[ 'gridU' ] = ['vozocrtx']                # u-current
-#to_plot[ 'gridV' ] = ['vomecrty']                # v-current
-#to_plot[ 'gridW' ] = ['vovecrtz']                           # w-current
+to_plot[ 'gridT' ] = ['votemper','vosaline','voextrho'] # T, S, drho
+to_plot[ 'gridU' ] = ['vozocrtx']                # u-current
+to_plot[ 'gridV' ] = ['vomecrty']                # v-current
+to_plot[ 'gridW' ] = ['vovecrtz']                           # w-current
 to_plot[ 'EKE' ] = ['voeke','vomke','votke']                # eke, mke, tke
-#to_plot[ 'VT' ]  = ['vomevt','vomevs','vozout','vozous']    # vt, vs, ut, us
+to_plot[ 'VT' ]  = ['vomevt','vomevs','vozout','vozous']    # vt, vs, ut, us
 # ============================================================
 
 
@@ -107,30 +108,30 @@ def main(respath,plotpath,confcase,freq,years,months,depth):
                 # loop on grids
                 for file in to_plot.keys():
                     grid_file = file_base + '_' + file + '.nc'
-                
+
                     # get mesh and data if file exists
                     if os.path.isfile(grid_file):
-                        ds=xr.open_dataset(grid_file)
-                        lon = ds.nav_lon.values
-                        lat = ds.nav_lat.values
+                        ds=nc.Dataset(grid_file)
+                        lon = ds.variables['nav_lon']
+                        lat = ds.variables['nav_lat']
                         try:
-                            dpt = ds.deptht.values
+                            dpt = ds.variables['deptht']
                         except Exception as e0:
                             try:
-                                dpt = ds.depthu.values
+                                dpt = ds.variables['depthu']
                             except Exception as e1:
                                 try:
-                                    dpt = ds.depthv.values
+                                    dpt = ds.variables['depthv']
                                 except Exception as e2:
                                     try:
-                                        dpt = ds.depthw.values
+                                        dpt = ds.variables['depthw']
                                     except Exception as e3:
                                         dpt = None
 
                         # loop on fields
                         for fld in to_plot[file]:
                             print(f'Plotting {fld}')
-                            data = getattr(ds,fld).values[-1]
+                            data = ds.variables[fld][-1].data
                             # check data
                             if data is None:
                                 data = np.zeros(lon.shape())
@@ -211,6 +212,7 @@ if __name__=="__main__":
     # get storage dir
     if 'SDIR' in os.environ:
         SDIR = os.environ['SDIR']
+        DDIR = os.environ['DDIR']
     else:
         print('ERROR: Environment variable $SDIR not defined')
         sys.exit()
@@ -219,7 +221,7 @@ if __name__=="__main__":
     print(f'Storage dir: {SDIR}')
     print(f'CONFCASE : {confcase}')
     conf, case = confcase.split('-')
-    respath = SDIR + '/' + conf + '/' + confcase + '-MEAN'
+    respath = DDIR + '/' + conf + '/' + confcase + '-MEAN'
     if not os.path.exists(respath) and not os.path.isdir(respath):
         print(f'ERROR: {respath} does not exist')
         sys.exit()
