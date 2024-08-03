@@ -24,7 +24,7 @@ The computed density is written in an output file with the NEMO ouput system (XI
 
 ### Python
 
-- Eophis version : [v0.9.1](https://github.com/meom-group/eophis/releases/tag/v0.9.1)
+- Eophis version : [v1.0.0](https://github.com/meom-group/eophis/releases/tag/v1.0.0)
 
 
 ### Run

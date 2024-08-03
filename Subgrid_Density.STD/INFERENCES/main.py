@@ -1,6 +1,6 @@
 # eophis API
 import eophis
-from eophis import Freqs, Grids
+from eophis import Freqs, Domains
 # other modules
 import argparse
 import os
@@ -12,14 +12,16 @@ def ocean_info():
     # coupling config
     tunnel_config = list()
     tunnel_config.append( { 'label' : 'TO_NEMO_FIELDS', \
-                            'grids' : { 'eORCA025' : (1440,1206,0,0) }, \
-                            'exchs' : [ {'freq' : Freqs.DAILY, 'grd' : 'eORCA025', 'lvl' : 1, 'in' : ['sst','sss'], 'out' : ['rho']} ] }
+                            'grids' : { 'eORCA025' : Domains.eORCA025 }, \
+                            'exchs' : [ {'freq' : Freqs.DAILY, 'grd' : 'eORCA025', 'lvl' : 75, 'in' : ['sst','sss'], 'out' : ['rho']} ] }
                         )
                         
     # static coupling (manual send/receive)
     tunnel_config.append( { 'label' : 'TO_NEMO_METRICS', \
-                            'grids' : { 'eORCA025' : (1440,1206,0,0) }, \
-                            'exchs' : [ {'freq' : Freqs.STATIC, 'grd' : 'eORCA025', 'lvl' : 1, 'in' : ['mask_u','mask_v'], 'out' : []} ] }
+                            'grids' : { 'eORCA025_U' : {'npts' : (1440,1206) , 'halos' : 1, 'bnd' : ('cyclic','NFold'), 'folding' : ('U','T')}    , \
+                                        'eORCA025_V' : {'npts' : (1440,1206) , 'halos' : 1, 'bnd' : ('cyclic','NFold'), 'folding' : ('V','T')}  } , \
+                            'exchs' : [ {'freq' : Freqs.STATIC, 'grd' : 'eORCA025_U', 'lvl' : 75, 'in' : ['mask_u'], 'out' : [] } , \
+                                        {'freq' : Freqs.STATIC, 'grd' : 'eORCA025_V', 'lvl' : 75, 'in' : ['mask_v'], 'out' : [] } ] }
                         )
                         
     return tunnel_config, nemo_nml
@@ -69,7 +71,7 @@ def production():
 
     #  Assemble
     # ++++++++++
-    @eophis.all_in_all_out(earth_system=nemo, step=step, niter=niter)
+    @eophis.all_in_all_out(geo_model=nemo, step=step, niter=niter)
     def loop_core(**inputs):
         outputs = {}
         
