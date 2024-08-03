@@ -37,16 +37,10 @@ def Std_Stanley(T, S, mask_u, mask_v, c=0.1):
         wght[ wght == 0 ] = 1
         dTdx = dTdx / wght
 
-        T_hls = T[:,1:2,:].copy()
-        T_hls = np.flip( T_hls )
-        T_hls = np.roll( T_hls, 1, axis=0)
-        mask_v_hls = np.delete( mask_v, 0, axis=1 )
-        mask_v_hls = np.hstack( (mask_v_hls, mask_v_hls[:,-1:,:]) )
-
-        dTdy = np.diff( np.hstack( (T_hls,T) ) , axis=1 ) * mask_v
-        dTdy = dTdy + np.diff(T,axis=1, append=T[:,-1:,:]) * mask_v_hls
-        wght = mask_v + mask_v_hls
-        wght[(wght == 0)] = 1
+        dTdy = np.diff(T,axis=1, prepend=T[:,0:1,:] ) * np.roll(mask_v, 1, axis=1)
+        dTdy = dTdy + np.diff(T,axis=1, append=T[:,-1:,:]) * mask_v
+        wght = mask_v + np.roll(mask_v, 1, axis=1)
+        wght[ wght == 0 ] = 1
         dTdy = dTdy / wght
         
         return stanley_terms(T,S) * c * ( dTdx**2 + dTdy**2 )
