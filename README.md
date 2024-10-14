@@ -27,7 +27,8 @@ The computed density is written in an output file with the NEMO ouput system (XI
 ### Python
 
 - Eophis version : [v1.0.0](https://github.com/meom-group/eophis/releases/tag/v1.0.0)
-
+- Models dependencies :
+    - **STD** : `pip install -r Subgrid_Density.STD/INFERENCES/requirements.txt`
 
 ### Run
 
