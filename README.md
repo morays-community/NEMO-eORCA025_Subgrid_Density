@@ -1,4 +1,4 @@
-# Subgrid Density
+# eORCA025_Subgrid_Density
 
 [![DOI](https://zenodo.org/badge/763602292.svg)](https://doi.org/10.5281/zenodo.13851843)
 
