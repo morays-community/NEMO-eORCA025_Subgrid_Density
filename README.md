@@ -10,9 +10,6 @@ The computed density is written in an output file with the NEMO ouput system (XI
 
 #### Variations
 - **STD** : Standard analytical computation as described in paper without retroaction on the solution
-- **LinReg** : Term $\sigma^2_T$ is computed with a statistical Linear Regression `...WORK IN PROGRESS...` 
-- **FCNN** : Term $\sigma^2_T$ computed with a pre-trained FCNN `...WORK IN PROGRESS...`
-- **CNN** : Term $\sigma^2_T$ computed with a pre-trained CNN `...WORK IN PROGRESS...`
 
 ## Experiments Requirements
 
@@ -28,7 +25,7 @@ The computed density is written in an output file with the NEMO ouput system (XI
 
 - Eophis version : [v1.0.0](https://github.com/meom-group/eophis/releases/tag/v1.0.0)
 - Models dependencies :
-    - **STD** : `pip install -r Subgrid_Density.STD/INFERENCES/requirements.txt`
+    - **STD** : `pip install -r eORCA025_Subgrid_Density.STD//INFERENCES/requirements.txt`
 
 ### Run
 
