@@ -16,7 +16,7 @@
 # Name of CONFIG and CASE
 
 CONFIG=eORCA025.L75
-CASE=SG_Dens.STD
+CASE=Subgrid_Density.S22
 MACHINE=jean-zay
 NODETYPE=BDW28
 ulimit -s unlimited  # needed for occigen 
@@ -29,7 +29,7 @@ useMPI=1
 # XIOS output from model ? (set XIOS=   if not used
 XIOS=1d
 NC4=1        # if set to 1 use netcdf4 capabilities of the cdftools
-VVL=0        # if set to 1 use vvl capabilities of the cdftools
+VVL=1        # if set to 1 use vvl capabilities of the cdftools
 TEOS10=0     # if set to 1 use teos10 EOS assuming Conservative temperature and absolute salinity
 FULL=0       # if set to other thing than 0, means you are using z-steps, no partial-steps.
 LIM3=0       # if set to 1 use LIM3 ice model and its std output in icemod3. If set to 0 use LIM2 (icemod)

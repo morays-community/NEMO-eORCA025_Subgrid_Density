@@ -16,7 +16,7 @@
 # Name of CONFIG and CASE
 
 CONFIG=eORCA025.L75
-CASE=SG_Dens.STD
+CASE=Subgrid_Density.S22
 MACHINE=jean-zay
 NODETYPE=BDW28
 ulimit -s unlimited  # needed for occigen 
@@ -27,7 +27,7 @@ MAIL=alexis.barge@univ-grenoble-alpes.fr      ## to be edited ##
 useMPI=1 
 
 # XIOS output from model ? (set XIOS=   if not used
-XIOS=1d
+XIOS=5d
 NC4=1        # if set to 1 use netcdf4 capabilities of the cdftools
 VVL=1        # if set to 1 use vvl capabilities of the cdftools
 TEOS10=0     # if set to 1 use teos10 EOS assuming Conservative temperature and absolute salinity
@@ -99,7 +99,7 @@ uttyp=VT   # use to be VT in DRAKKAR
 ###    - anything else if you don't want anything
 ######################################################################
 
-EKE=0                    # compute EKE
+EKE=1                    # compute EKE
 RMSSSH=0                 # compute RMS ssh and w
 TSMEAN=1                 # compute TSMEAN and ssh drift
 TSLAT=0                  # compute TSMEAN and ssh drift for latitude bands 60S - 60N

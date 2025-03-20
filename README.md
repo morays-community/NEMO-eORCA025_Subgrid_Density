@@ -9,7 +9,7 @@ Purpose of this experiment is to compute the subgrid-density fluctuations with d
 The computed density is written in an output file with the NEMO ouput system (XIOS).
 
 #### Variations
-- **STD** : Standard analytical computation as described in paper without retroaction on the solution
+- **S22** : Standard analytical computation as described in paper without retroaction on the solution
 
 ## Experiments Requirements
 
@@ -25,7 +25,7 @@ The computed density is written in an output file with the NEMO ouput system (XI
 
 - Eophis version : [v1.0.0](https://github.com/meom-group/eophis/releases/tag/v1.0.0)
 - Models dependencies :
-    - **STD** : `pip install -r eORCA025_Subgrid_Density.STD//INFERENCES/requirements.txt`
+    - **S22** : `pip install -r eORCA025_Subgrid_Density.S22/INFERENCES/requirements.txt`
 
 ### Run
 

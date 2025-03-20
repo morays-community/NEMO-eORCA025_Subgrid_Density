@@ -14,7 +14,7 @@
 # it must be customized for each configuration
 
 CONFIG=eORCA025.L75                   
-CASE=SG_Dens.STD
+CASE=Subgrid_Density.S22
 MACHINE=occigen2
 ACCOUNT=cli@cpu
 

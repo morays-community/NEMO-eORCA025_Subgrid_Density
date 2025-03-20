@@ -11,7 +11,7 @@ if [ ! $PDIR ] ; then
    exit 1
 fi
 CONFIG=eORCA025.L75
-CASE=SG_Dens.STD
+CASE=Subgrid_Density.S22
 CONFCASE=${CONFIG}-${CASE}
 
 set +x
