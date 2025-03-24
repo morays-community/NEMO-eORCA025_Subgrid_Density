@@ -13,7 +13,7 @@ def ocean_info():
     tunnel_config = list()
     tunnel_config.append( { 'label' : 'TO_NEMO_FIELDS', \
                             'grids' : { 'eORCA025' : Domains.eORCA025 }, \
-                            'exchs' : [ {'freq' : Freqs.DAILY, 'grd' : 'eORCA025', 'lvl' : 75, 'in' : ['sst','sss'], 'out' : ['rho']} ] }
+                            'exchs' : [ {'freq' : 900, 'grd' : 'eORCA025', 'lvl' : 75, 'in' : ['sst','sss'], 'out' : ['rho']} ] }
                         )
                         
     # static coupling (manual send/receive)
@@ -62,7 +62,6 @@ def production():
 
     #  Models
     # ++++++++
-    #from models import Std_Stanley, GTF_LinReg_Stanley, GTF_FCNN_Stanley, GTF_CNN_Stanley
     from models import Std_Stanley
 
     # get masks
