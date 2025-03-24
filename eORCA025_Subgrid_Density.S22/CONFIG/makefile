@@ -8,7 +8,7 @@
 
 
 CONFIG = eORCA025.L75
-CASE = Subgrid_Density.S22
+CASE = SubgridDensity.S22
 CASEREF = 'none'
 
 # PREV_CONFIG  (type the full path or 'none' )
