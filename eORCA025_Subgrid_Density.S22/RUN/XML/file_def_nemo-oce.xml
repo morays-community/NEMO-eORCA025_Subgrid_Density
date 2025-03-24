@@ -76,7 +76,8 @@
 	<file id="file10" name_suffix="_gridT" description="ocean T grid variables" >
             <field field_ref="toce"          name="votemper"   />
             <field field_ref="soce"          name="vosaline"   />
-            <field field_ref="St_rho_3D"     name="voextrho" />
+	    <field field_ref="St_rho_3D"     name="voextrho"   />
+	    <field field_ref="rhop"          name="vorhop"     />
         </file>
 
         <!-- U FILES -->

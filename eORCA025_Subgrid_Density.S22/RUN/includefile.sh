@@ -13,7 +13,7 @@ set -x
 
  RST_SKIP=1                           # if set, checking of the existence of the full set of restart files is disable (save time !)
  # next flags should be set to 1 if using DCM rev > 1674, to 0 otherwise.
- RST_DIRS=0                           # if set, assumes that restart files are written on multiple directories.
+ RST_DIRS=1                           # if set, assumes that restart files are written on multiple directories.
  RST_READY=1                          # if set assumes that restart file are ready to be read by NEMO (no links).
 
  monthly=0                            # set to 1 for monthly (1mo/xios) job segments
@@ -22,7 +22,7 @@ set -x
 #########################################################################
 
  CONFIG=eORCA025.L75
- CASE=Subgrid_Density.S22
+ CASE=SubgridDensity.S22
  CONFIG_CASE=${CONFIG}-${CASE}
 
 # Environmemt and miscelaneous
@@ -64,7 +64,7 @@ F_FOR_DIR=${ROTE_DIR}/DATA_FORCING/DFS5.2_RD/ALL    # in function 3.2
 F_OBC_DIR=${SDIR}/${CONFIG}/${CONFIG}-I/OBC      # OBC files
 F_BDY_DIR=${SDIR}/${CONFIG}/${CONFIG}-I/BDY      # BDY files
 F_MASK_DIR=${SDIR}/${CONFIG}/${CONFIG}-I/MASK    # AABW damping , Katabatic winds
-F_INI_DIR=${CLI_DIR}/${CONFIG}/${CONFIG}-I/          
+F_INI_DIR=${SDIR}/${CONFIG}/${CONFIG}-I/          
 F_WEI_DIR=$SDIR/DATA_FORCING/ERAinterim/ALL
 
 F_OBS_DIR=/ccc/work/cont003/drakkar/drakkar      # for OBS operator
@@ -76,7 +76,7 @@ P_S_DIR=$DDIR/${CONFIG}/${CONFIG_CASE}-S
 P_R_DIR=$DDIR/${CONFIG}/${CONFIG_CASE}-R
 P_I_DIR=$DDIR/${CONFIG}/${CONFIG}-I                  # mirror on the production machine of the F_I_DIR
 P_DTA_DIR=$DDIR/${CONFIG}/${CONFIG}-I                # mirror on the production machine of the F_I_DIR
-P_FOR_DIR=${CLI_DIR}/DATA_FORCING/JRA55/drowned         # forcing files
+P_FOR_DIR=${ROTE_DIR}/DATA_FORCING/JRA55/drowned         # forcing files
 P_OBC_DIR=${DDIR}/${CONFIG}/${CONFIG}-I/OBC          # OBC files
 P_BDY_DIR=${DDIR}/${CONFIG}/${CONFIG}-I/BDY          # BDY files
 P_WEI_DIR=$P_DTA_DIR                                    # weight files
@@ -84,9 +84,9 @@ P_WEI_DIR=$P_DTA_DIR                                    # weight files
 P_CTL_DIR=${PDIR}/RUN_${CONFIG}/${CONFIG_CASE}/CTL      # directory from which the job is  launched
 P_CDF_DIR=${PDIR}/RUN_${CONFIG}/${CONFIG_CASE}/CTL/CDF  # directory from which the diags are launched
 P_EXE_DIR=${PDIR}/RUN_${CONFIG}/${CONFIG_CASE}/EXE      # directory where to find opa
-P_UTL_DIR=${WORK}/BLD/WeORCA025.L75-Subgrid_Density.S22/tools/REBUILD_MPP/BLD  # root directory of the build_nc programs (under bin )
+P_UTL_DIR=${WORK}/BLD/WeORCA025.L75-MLE.CNN/tools/REBUILD_MPP/BLD  # root directory of the build_nc programs (under bin )
 P_XIOS_DIR=${WORK}/local_libs/xios_trunk_oasis_5.0                # root directory of the XIOS library and xios_server.exe
-P_PY_DIR=$WORK/local_libs/morays/NEMO-Subgrid_Density/Subgrid_Density.STD/INFERENCES # root directiry of the python libraries
+P_PY_DIR=$WORK/local_libs/morays/NEMO-eORCA025_Subgrid_Density/eORCA025_Subgrid_Density.S22/INFERENCES # root directiry of the python libraries
 
 P_OBS_DIR=/ccc/work/cont003/drakkar/drakkar     # for OBS operation
   P_ENA_DIR=${P_OBS_DIR}/ENACT-ENS

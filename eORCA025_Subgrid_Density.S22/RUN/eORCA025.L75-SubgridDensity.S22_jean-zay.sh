@@ -1,17 +1,15 @@
 #!/bin/bash
-#SBATCH --ntasks=1031
-#SBATCH -J nemo_jean-zay
-#SBATCH -e nemo_jean-zay.e%j
-#SBATCH -o nemo_jean-zay.o%j
+#SBATCH --ntasks=1127
+#SBATCH -J eORCA025_SG.S22
+#SBATCH -e dcm_log.e%j
+#SBATCH -o dcm_log.o%j
 #SBATCH -A cli@cpu
 #SBATCH --hint=nomultithread
-#SBATCH --time=05:00:00
+#SBATCH --time=00:30:00
 #SBATCH --exclusive
 
 # Python environment -- complete/modify/comment as you wish
 # ---------------------------------------------------------
-source $P_PYOASIS_DIR/python/init.sh
-source $P_PYOASIS_DIR/python/init.csh
 source ${HOME}/.bash_profile
 # ----------- 
 
@@ -20,7 +18,7 @@ ulimit -s
 ulimit -s unlimited
 
 CONFIG=eORCA025.L75
-CASE=GB.INF
+CASE=SubgridDensity.S22
 
 CONFCASE=${CONFIG}-${CASE}
 CTL_DIR=$PDIR/RUN_${CONFIG}/${CONFCASE}/CTL
@@ -38,13 +36,13 @@ export NB_NCORE_DP=0   # activate depopulated core computation for XIOS. If not 
                        # the number of cores used by XIOS on each exclusive node.
 
 # OASIS coupling - set to 0 if not
-export NB_NPROC_PYCPL=32   # number of cores used for coupled python script
+export NB_NPROC_PYCPL=128   # number of cores used for coupled python script
 
 # Rebuild process 
 export MERGE=0         # 1 = on the fly rebuild, 0 = dedicated job
-export NB_NPROC_MER=20 # number of cores used for rebuild on the fly  (1/node is a good choice)
-export NB_NNODE_MER=20 # number of nodes used for rebuild in dedicated job (MERGE=0). One instance of rebuild per node will be used.
-export WALL_CLK_MER=2:00:00   # wall clock time for batch rebuild
+export NB_NPROC_MER=10 # number of cores used for rebuild on the fly  (1/node is a good choice)
+export NB_NNODE_MER=10 # number of nodes used for rebuild in dedicated job (MERGE=0). One instance of rebuild per node will be used.
+export WALL_CLK_MER=0:30:00   # wall clock time for batch rebuild
 export ACCOUNT=cli@cpu # account to be used
 
 date
