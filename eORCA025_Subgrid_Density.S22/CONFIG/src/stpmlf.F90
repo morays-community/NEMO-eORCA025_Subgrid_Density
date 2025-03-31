@@ -121,6 +121,11 @@ CONTAINS
       ENDIF
       !
       !>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+      ! Send data for external Python model
+      !<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                         CALL inferences_send ( kstp, Nbb, Nnn, Naa )
+      !
+      !>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
       ! update I/O and calendar
       !<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       !
@@ -164,11 +169,6 @@ CONTAINS
       IF( ln_bdy     )   CALL bdy_dta ( kstp, Nnn )                   ! update dynamic & tracer data at open boundaries
       IF( ln_isf     )   CALL isf_stp ( kstp, Nnn )
                          CALL sbc     ( kstp, Nbb, Nnn )              ! Sea Boundary Condition (including sea-ice)
-
-      !>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-      ! Update data from external Inferences
-      !<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                         CALL inferences ( kstp, Nbb, Nnn, Naa )      ! External inferences models
 
       !>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
       ! Update stochastic parameters and random T/S fluctuations
@@ -236,6 +236,8 @@ CONTAINS
                          DO jk = 1, jpk
                             zgdept(:,:,jk) = gdept(:,:,jk,Nnn)
                          END DO
+
+                         CALL inferences_rcv ( kstp ) ! Get data from external Python model
                          CALL eos        ( ts(:,:,:,:,Nnn), rhd, rhop, zgdept ) ! now in situ density for hpg computation
                          DEALLOCATE( zgdept )
 

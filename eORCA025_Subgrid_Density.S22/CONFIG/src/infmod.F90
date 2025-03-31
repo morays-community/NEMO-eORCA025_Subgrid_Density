@@ -28,7 +28,8 @@ MODULE infmod
    PUBLIC inf_alloc          ! function called in inferences_init 
    PUBLIC inf_dealloc        ! function called in inferences_final
    PUBLIC inferences_init    ! routine called in nemogcm.F90
-   PUBLIC inferences         ! routine called in stpmlf.F90
+   PUBLIC inferences_send    ! routine called in stpmlf.F90
+   PUBLIC inferences_rcv     ! routine called in stpmlf.F90
    PUBLIC inferences_final   ! routine called in nemogcm.F90
 
    INTEGER, PARAMETER ::   jps_st = 1    ! sea temperature
@@ -129,8 +130,6 @@ CONTAINS
       IF ( lwp .AND. ln_inf ) THEN
          WRITE(numout,*)'   Namelist naminf'
          WRITE(numout,*)'      Module used       ln_inf        = ', ln_inf
-         WRITE(numout,*)'      Models available:'
-         WRITE(numout,*)'         Stanley et al. (2020)        = ', 'T by default for now'
       ENDIF
       !
       IF( ln_inf .AND. .NOT. lk_oasis )   CALL ctl_stop( 'inferences_init : External inferences coupled via OASIS, but key_oasis3 disabled' )
@@ -148,7 +147,6 @@ CONTAINS
       ssnd(ntypinf,:)%nct = 1  ;  ssnd(ntypinf,:)%nlvl = 75
       
       IF( ln_inf ) THEN
-      
          ! -------------------------------- !
          !      Kenigson et al. (2022)      !
          ! -------------------------------- !
@@ -171,10 +169,6 @@ CONTAINS
          ! reception of sea surface density
          srcv(ntypinf,jpr_rho)%clname = 'E_IN_0'
          srcv(ntypinf,jpr_rho)%laction = .TRUE.
-
-         ! ------------------------------ !
-         ! ------------------------------ !
-
       END IF
       ! 
       ! ================================= !
@@ -188,9 +182,9 @@ CONTAINS
    END SUBROUTINE inferences_init
 
 
-   SUBROUTINE inferences( kt, Kbb, Kmm, Kaa )
+   SUBROUTINE inferences_send( kt, Kbb, Kmm, Kaa )
       !!----------------------------------------------------------------------
-      !!             ***  ROUTINE inferences  ***
+      !!             ***  ROUTINE inferences_send  ***
       !!
       !! ** Purpose :   update the ocean data with the ML based models
       !!
@@ -201,10 +195,9 @@ CONTAINS
       INTEGER, INTENT(in) ::   Kbb, Kmm, Kaa ! ocean time level indices
       !
       INTEGER :: isec, info, jn                       ! local integer
-      REAL(wp), DIMENSION(jpi,jpj,jpk)   ::  zdata    ! sending buffer
       !!----------------------------------------------------------------------
       !
-      IF( ln_timing )   CALL timing_start('inferences')
+      IF( ln_timing )   CALL timing_start('inferences_send')
       !
       isec = ( kt - nit000 ) * NINT( rn_Dt )       ! Date of exchange 
       info = OASIS_idle
@@ -241,7 +234,29 @@ CONTAINS
          ENDIF
       END DO
       !
-      ! .... some external operations ....
+      IF( ln_timing )   CALL timing_stop('inferences_send')
+      !
+   END SUBROUTINE inferences_send
+
+
+   SUBROUTINE inferences_rcv( kt )
+      !!----------------------------------------------------------------------
+      !!             ***  ROUTINE inferences_rcv  ***
+      !!
+      !! ** Purpose :   update the ocean data with the ML based models
+      !!
+      !! ** Method  :   *
+      !!                *
+      !!----------------------------------------------------------------------
+      INTEGER, INTENT(in) ::   kt            ! ocean time step
+      !
+      INTEGER :: isec, info, jn                       ! local integer
+      !!----------------------------------------------------------------------
+      !
+      IF( ln_timing )   CALL timing_start('inferences_rcv')
+      !
+      isec = ( kt - nit000 ) * NINT( rn_Dt )       ! Date of exchange
+      info = OASIS_idle
       !
       ! ==========================
       !   Proceed all receptions
@@ -257,14 +272,14 @@ CONTAINS
       !
       ! Sea Surface density
       IF( srcv(ntypinf,jpr_rho)%laction ) THEN
-         tmp_inf_3D(:,:,1:srcv(ntypinf,jpr_rho)%nlvl) = infrcv(jpr_rho)%z3(:,:,1:srcv(ntypinf,jpr_rho)%nlvl)
-         CALL iom_put( 'St_rho_2D', tmp_inf_3D(:,:,1) )
-         CALL iom_put( 'St_rho_3D', tmp_inf_3D(:,:,:) )
+         rho_corr(:,:,1:srcv(ntypinf,jpr_rho)%nlvl) = infrcv(jpr_rho)%z3(:,:,1:srcv(ntypinf,jpr_rho)%nlvl)
+         CALL iom_put( 'St_rho_2D', rho_corr(:,:,1) )
+         CALL iom_put( 'St_rho_3D', rho_corr(:,:,:) )
       ENDIF
       !
-      IF( ln_timing )   CALL timing_stop('inference')
+      IF( ln_timing )   CALL timing_stop('inferences_rcv')
       !
-   END SUBROUTINE inferences
+   END SUBROUTINE inferences_rcv
 
 
    SUBROUTINE inferences_final
