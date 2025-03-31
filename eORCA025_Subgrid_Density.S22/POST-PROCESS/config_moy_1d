@@ -60,7 +60,7 @@ case $MACHINE in
     P_S_DIR=$DDIR/${CONFIG}/${CONFCASE}-S/$XIOS    # input directory
     MOYTMPDIR=$DDIR/${CONFIG}/${CONFCASE}-S/tmpmean # tmpdir for means (absolute path)
     VTTMPDIR=$DDIR/${CONFIG}/${CONFCASE}-S/tmpvt   # tmpdir for VT (absolute path)
-    MEANDIR=$SDIR/${CONFIG}/${CONFCASE}-MEAN/$XIOS # output directory
+    MEANDIR=$DDIR/${CONFIG}/${CONFCASE}-MEAN/$XIOS # output directory
     CDFTOOLS=$WORK/local_libs/CDFTOOLS/bin         # place of executable
     MPITOOLS=$WORK/local_libs/DMONTOOLS/MPI_TOOLS  # mpitools executable
     WPDIR=$WORKDIR/${CONFIG}/CTL/CDF               # Working Pdir for templates scripts
