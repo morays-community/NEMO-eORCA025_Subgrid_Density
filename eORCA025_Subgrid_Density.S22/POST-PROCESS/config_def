@@ -27,9 +27,9 @@ MAIL=alexis.barge@univ-grenoble-alpes.fr      ## to be edited ##
 useMPI=1 
 
 # XIOS output from model ? (set XIOS=   if not used
-XIOS=1d
+XIOS=5d
 NC4=1        # if set to 1 use netcdf4 capabilities of the cdftools
-VVL=0        # if set to 1 use vvl capabilities of the cdftools
+VVL=1        # if set to 1 use vvl capabilities of the cdftools
 TEOS10=0     # if set to 1 use teos10 EOS assuming Conservative temperature and absolute salinity
 FULL=0       # if set to other thing than 0, means you are using z-steps, no partial-steps.
 LIM3=0       # if set to 1 use LIM3 ice model and its std output in icemod3. If set to 0 use LIM2 (icemod)
@@ -99,9 +99,9 @@ uttyp=VT   # use to be VT in DRAKKAR
 ###    - anything else if you don't want anything
 ######################################################################
 
-EKE=0                    # compute EKE
+EKE=1                    # compute EKE
 RMSSSH=0                 # compute RMS ssh and w
-TSMEAN=1                 # compute TSMEAN and ssh drift
+TSMEAN=0                 # compute TSMEAN and ssh drift
 TSLAT=0                  # compute TSMEAN and ssh drift for latitude bands 60S - 60N
 ICEMONTH=0               # compute monthly ice volume, area and extent
 GIB=0                    # compute Gibraltar diags (restoring zone)
@@ -109,7 +109,7 @@ KERG=0                   # compute Kerguelen diags (restoring zone)
 KERGb=0                  # compute Kerguelen diags for PISCES (restoring zone)
 ELNINO=0                 # compute El Nino monitoring SSTs
 TRP=0                    # compute barotropic transport accross section as given in section.dat (CTL dir)
-MHT=1                    # compute Meridional Heat Transport (advective and from surface fluxes)
+MHT=0                    # compute Meridional Heat Transport (advective and from surface fluxes)
 MOC=0                    # compute MOC ( need a sub basin mask file called new_maskglo.nc)
 MOCSIG=0                 # compute MOC in sigma coordinates
 # To be set if MOCSIG=1/2/3
@@ -118,7 +118,7 @@ mocsig_5d=0              # compute MOC in sigma coordinates from:
 DREF=2000                # potential density referenced at $DREF m is the sigma coordinate used
 #
 MAXMOC=0                 # diagnose the min and max of MOC
-BSF=0                    # compute the BSF (psi) from U and V
+BSF=1                    # compute the BSF (psi) from U and V
 DCT=0                    # compute density class transports for section given in dens_section.dat (CTL dir)
 MXL=0                    # compute mixed layer depth from 3 criteria for month 03 and 09
 TRACER=0                 # compute passive Tracer statistics
