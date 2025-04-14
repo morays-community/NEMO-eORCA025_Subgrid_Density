@@ -9,8 +9,8 @@ Purpose of this experiment is to compute the subgrid-density fluctuations with d
 The computed density is written in an output file with the NEMO ouput system (XIOS).
 
 #### Variations
-- **S22** : Standard analytical computation as described in paper without retroaction on the solution
-
+- **S22** : Standard analytical computation as described in paper
+- 
 ## Experiments Requirements
 
 
