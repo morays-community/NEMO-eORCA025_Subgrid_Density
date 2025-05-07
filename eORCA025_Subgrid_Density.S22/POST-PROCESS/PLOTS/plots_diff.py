@@ -67,18 +67,18 @@ if __name__=="__main__":
 
 
     # BSF difference
-    infos = [ 'Barotropic Stream Function : eORCA025.L75.S22 - eORCA025.L75 (m3/s)' , cmocean.cm.balance , colors.Normalize(vmin=-5.e7, vmax=5.0e7), lambda x: x ]
-    main( filepath_ref='eORCA025.L75-GB.INF-MEAN/5d/1967/eORCA025.L75-GB.INF_y1967.5d_PSI.nc' , filepath='eORCA025.L75-SubgridDensity.S22-MEAN/5d/1967/eORCA025.L75-SubgridDensity.S22_y1967.5d_PSI.nc' , var_name='sobarstf', fig_name='BSF', infos=infos , freq='5d' )
+    infos = [ 'Barotropic Stream Function : eORCA025.L75.S22 - eORCA025.L75 (m3/s)' , cmocean.cm.balance , colors.Normalize(vmin=-2.e7, vmax=2.e7), lambda x: x ]
+    main( filepath_ref='eORCA025.L75-GB.INF-MEAN/5d/1966-1970/eORCA025.L75-GB.INF_y1966-1970.5d_PSI.nc' , filepath='eORCA025.L75-SubgridDensity.S22-MEAN/5d/1966-1970/eORCA025.L75-SubgridDensity.S22_y1966-1970.5d_PSI.nc' , var_name='sobarstf', fig_name='BSF', infos=infos , freq='5d' )
 
     # SST difference
-    infos = [ 'SST : eORCA025.L75.S22 - eORCA025.L75 (ºC)' , cmocean.cm.balance , colors.Normalize(vmin=-3.0, vmax=3.0), lambda x: x ]
-    main( filepath_ref='eORCA025.L75-GB.INF-MEAN/1d/1967/eORCA025.L75-GB.INF_y1967.1d_gridTsurf.nc' , filepath='eORCA025.L75-SubgridDensity.S22-MEAN/1d/1967/eORCA025.L75-SubgridDensity.S22_y1967.1d_gridTsurf.nc' , var_name='sosstsst', fig_name='SST', infos=infos , freq='1d' )
+    infos = [ 'SST : eORCA025.L75.S22 - eORCA025.L75 (ºC)' , cmocean.cm.balance , colors.Normalize(vmin=-1.5, vmax=1.5), lambda x: x ]
+    main( filepath_ref='eORCA025.L75-GB.INF-MEAN/1d/1966-1970/eORCA025.L75-GB.INF_y1966-1970.1d_gridTsurf.nc' , filepath='eORCA025.L75-SubgridDensity.S22-MEAN/1d/1966-1970/eORCA025.L75-SubgridDensity.S22_y1966-1970.1d_gridTsurf.nc' , var_name='sosstsst', fig_name='SST', infos=infos , freq='1d' )
 
 
     # SSH difference
-    infos = [ 'SSH : eORCA025.L75.S22 - eORCA025.L75 (m)' , cmocean.cm.balance , colors.Normalize(vmin=-0.4, vmax=0.4), lambda x: x ]
-    main( filepath_ref='eORCA025.L75-GB.INF-MEAN/1d/1967/eORCA025.L75-GB.INF_y1967.1d_gridTsurf.nc' , filepath='eORCA025.L75-SubgridDensity.S22-MEAN/1d/1967/eORCA025.L75-SubgridDensity.S22_y1967.1d_gridTsurf.nc' , var_name='sossheig', fig_name='SSH', infos=infos , freq='1d' )
+    infos = [ 'SSH : eORCA025.L75.S22 - eORCA025.L75 (m)' , cmocean.cm.balance , colors.Normalize(vmin=-0.3, vmax=0.3), lambda x: x ]
+    main( filepath_ref='eORCA025.L75-GB.INF-MEAN/1d/1966-1970/eORCA025.L75-GB.INF_y1966-1970.1d_gridTsurf.nc' , filepath='eORCA025.L75-SubgridDensity.S22-MEAN/1d/1966-1970/eORCA025.L75-SubgridDensity.S22_y1966-1970.1d_gridTsurf.nc' , var_name='sossheig', fig_name='SSH', infos=infos , freq='1d' )
 
     # Non-Solar Heat Flux difference
-    infos = [ 'Net Heat Flux : eORCA025.L75.S22 - eORCA025.L75 (W/m2)' , cmocean.cm.balance , colors.Normalize(vmin=-100.0, vmax=100.0), lambda x: x ]
-    main( filepath_ref='eORCA025.L75-GB.INF-MEAN/1d/1967/eORCA025.L75-GB.INF_y1967.1d_flxT.nc' , filepath='eORCA025.L75-SubgridDensity.S22-MEAN/1d/1967/eORCA025.L75-SubgridDensity.S22_y1967.1d_flxT.nc' , var_name='sohefldo', fig_name='QT', infos=infos , freq='1d' )
+    infos = [ 'Net Heat Flux : eORCA025.L75.S22 - eORCA025.L75 (W/m2)' , cmocean.cm.balance , colors.Normalize(vmin=-50.0, vmax=50.0), lambda x: x ]
+    main( filepath_ref='eORCA025.L75-GB.INF-MEAN/1d/1966-1970/eORCA025.L75-GB.INF_y1966-1970.1d_flxT.nc' , filepath='eORCA025.L75-SubgridDensity.S22-MEAN/1d/1966-1970/eORCA025.L75-SubgridDensity.S22_y1966-1970.1d_flxT.nc' , var_name='sohefldo', fig_name='QT', infos=infos , freq='1d' )
