@@ -1,7 +1,6 @@
 # eORCA025 Subgrid-Density
 
-[![DOI](https://zenodo.org/badge/763602292.svg)](https://doi.org/10.5281/zenodo.13851843)
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18244389.svg)](https://doi.org/10.5281/zenodo.18244389)
 
 ## Context and Motivation
 
@@ -10,7 +9,7 @@ The computed density is written in an output file with the NEMO ouput system (XI
 
 #### Variations
 - **S22** : Standard analytical computation as described in paper
-- 
+
 ## Experiments Requirements
 
 
